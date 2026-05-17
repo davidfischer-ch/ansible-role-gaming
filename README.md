@@ -11,7 +11,10 @@ This role has no requirements.
 
 ## Variables
 
-TODO VARIABLES
+| Variable | Default | Description |
+|---|---|---|
+| `gaming_packages` | `[steam-installer]` | Apt packages to install. |
+| `gaming_snap_flush_packages` | `{{ gaming_packages }}` | Snap package names to remove before apt install when `desktop_snap_mode` is `partial` or `disabled`. Names must match snap identifiers (may differ from apt names, e.g. `steam` not `steam-installer`). Failures are silenced. |
 
 ## License
 

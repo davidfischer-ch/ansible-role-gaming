@@ -1,8 +1,16 @@
 ---
 
-- name: Install gaming packages
-  package:
-    name: '{{ gaming_packages }}'
-    state: present
-  become: yes
+- block:
+    - name: Remove gaming snap packages
+      ansible.builtin.command: >
+        snap remove --purge {{ item }}
+      loop: '{{ gaming_snap_flush_packages }}'
+      failed_when: false
+      when: desktop_snap_mode in ['partial', 'disabled']
+
+    - name: Install gaming packages
+      ansible.builtin.package:
+        name: '{{ gaming_packages }}'
+        state: present
+  become: '{{ do_become }}'
   tags: [gaming, packages]

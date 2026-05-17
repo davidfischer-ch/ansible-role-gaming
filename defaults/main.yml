@@ -1,2 +1,4 @@
 gaming_packages:
   - steam-installer
+
+gaming_snap_flush_packages: '{{ gaming_packages }}'
